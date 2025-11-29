@@ -6,31 +6,29 @@ import java.util.Scanner;
 public class GuessNumberGame {
     private Scanner scanner = new Scanner(System.in);
     private Random random = new Random();
-    private int maxNumber;     // Maximum number to guess
-    private int maxAttempts;   // Maximum attempts based on difficulty
+    private int maxNumber;
+    private int maxAttempts;
 
     public static void main(String[] args) {
-        // Создаем объект игры
+
         GuessNumberGame game = new GuessNumberGame();
-        // Вызываем метод startGame() для запуска
+
         game.startGame();
     }
 
-    // Start the game
     public void startGame() {
         System.out.println("Welcome to 'Guess the Number'!");
 
         boolean playAgain = true;
         while (playAgain) {
-            chooseDifficulty();  // выбираем уровень сложности
-            playRound();         // запускаем раунд угадывания
-            playAgain = askPlayAgain(); // спрашиваем, хочет ли игрок сыграть ещё раз
+            chooseDifficulty();
+            playRound();
+            playAgain = askPlayAgain();
         }
 
         System.out.println("Thanks for playing!");
     }
 
-    // Choose difficulty level
     private void chooseDifficulty() {
         System.out.println("Choose difficulty level:");
         System.out.println("1 - Easy (1-50, 10 attempts)");
@@ -58,7 +56,6 @@ public class GuessNumberGame {
         }
     }
 
-    // One round of the game
     private void playRound() {
         int numberToGuess = random.nextInt(maxNumber) + 1;
         int attempts = 0;
@@ -87,16 +84,14 @@ public class GuessNumberGame {
         }
     }
 
-    // Safe reading of integer input
     private int readInt() {
         while (!scanner.hasNextInt()) {
             System.out.println("Please enter a valid number!");
-            scanner.next(); // clear invalid input
+            scanner.next();
         }
         return scanner.nextInt();
     }
 
-    // Ask player if they want to play again
     private boolean askPlayAgain() {
         System.out.println("Do you want to play again? (y/n)");
         String answer = scanner.next();
